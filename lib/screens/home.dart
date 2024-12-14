@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mis_lab2/models/joke.dart';
-import 'package:mis_lab2/widgets/api_services.dart';
+import 'package:mis_lab2/models/type.dart';
+import 'package:mis_lab2/services/api_services.dart';
+import 'package:mis_lab2/widgets/home_main_grid.dart';
+import 'package:mis_lab2/widgets/jokeTypeCard.dart';
+import 'package:mis_lab2/widgets/myAppBar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,23 +13,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Joke> jokes = [];
+  List<JokeType> jokeTypes = [];
+
 
   @override
   void initState() {
     super.initState();
-    getJokes();
+    getJokeTypes();
   }
 
-  void getJokes() async {
-    var fetchJokes = await ApiService.fetchJokes();
+  void getJokeTypes() async {
+    List<JokeType> fetchTypes = await ApiService.fetchTypes();
     setState(() {
-      jokes = fetchJokes;
+      jokeTypes = fetchTypes;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text("asdads $jokes");
+    return Scaffold(
+      appBar: myAppBar(context),
+      body: HomeMainGrid(types: jokeTypes),
+    );
   }
 }
