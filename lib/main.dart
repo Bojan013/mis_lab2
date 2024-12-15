@@ -19,11 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const Home(),
         "/jokes": (context) => const Jokes(),
-        // "/general": (context) => const Details(),
-        // "/knock-knock": (context) => const Details(),
-        // "/programming": (context) => const Details(),
-        // "/dad": (context) => const Details(),
-        // "/daily-joke": (context) => const DailyJoke(),
+        "/daily-joke": (context) => const DailyJoke()
       },
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mis_lab2/models/type.dart';
-import 'package:mis_lab2/widgets/jokeTypeCard.dart';
+import 'package:mis_lab2/widgets/joke_type_card.dart';
 
 class HomeMainGrid extends StatefulWidget {
   final List<JokeType> types;
@@ -28,7 +28,7 @@ class _HomeMainGridState extends State<HomeMainGrid> {
             );
           },
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             child: JokeTypeCard(jokeType: item),
           ),
         );

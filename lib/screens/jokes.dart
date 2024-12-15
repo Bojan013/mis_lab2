@@ -4,7 +4,7 @@ import 'package:mis_lab2/models/type.dart';
 import 'package:mis_lab2/services/api_services.dart';
 import 'package:mis_lab2/widgets/jokes_main_grid.dart';
 import 'package:mis_lab2/widgets/home_main_grid.dart';
-import 'package:mis_lab2/widgets/jokeTypeCard.dart';
+import 'package:mis_lab2/widgets/joke_type_card.dart';
 import 'package:mis_lab2/widgets/myAppBar.dart';
 
 class Jokes extends StatefulWidget {
