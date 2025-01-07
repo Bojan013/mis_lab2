@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mis_lab2/models/joke.dart';
-import 'package:mis_lab2/models/type.dart';
+import 'package:mis_lab2/providers/joke_provider.dart';
+import 'package:provider/provider.dart';
 
 class JokeCard extends StatefulWidget {
   final Joke joke;
@@ -38,14 +39,36 @@ class _JokeCard extends State<JokeCard> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                widget.joke.setup,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
-                  color: Colors.black87,
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Text(
+                      widget.joke.setup,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                  Selector<JokeProvider, bool>(
+                    selector: (context, jokeProvider) =>
+                    widget.joke.isFavorite,
+                    builder: (context, isFavorite, child) {
+                      return IconButton(
+                        onPressed: () {
+                          context
+                              .read<JokeProvider>()
+                              .toggleFavorite(widget.joke);
+                        },
+                        color: isFavorite ? Colors.red : Colors.blueGrey,
+                        icon: const Icon(Icons.favorite),
+                      );
+                    },
+                  ),
+                ],
               ),
               const SizedBox(height: 16.0),
               AnimatedOpacity(

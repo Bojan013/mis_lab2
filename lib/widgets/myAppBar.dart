@@ -29,6 +29,14 @@ AppBar myAppBar(BuildContext context) {
         },
         tooltip: 'Smile',
       ),
+      IconButton(
+        icon: const Icon(Icons.favorite, size: 30),
+        color: Colors.white,
+        onPressed: () {
+          Navigator.pushNamed(context, '/favorites');
+        },
+        tooltip: 'Favorites',
+      ),
     ],
   );
 }
