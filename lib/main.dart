@@ -4,13 +4,22 @@ import 'package:mis_lab2/screens/daily_joke.dart';
 import 'package:mis_lab2/screens/favorites.dart';
 import 'package:mis_lab2/screens/home.dart';
 import 'package:mis_lab2/screens/jokes.dart';
+import 'package:mis_lab2/services/notifications_service.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  print("Handling a background message: ${message.messageId}");
+}
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  NotificationsService().initialize();
 
   runApp(
     MultiProvider(
